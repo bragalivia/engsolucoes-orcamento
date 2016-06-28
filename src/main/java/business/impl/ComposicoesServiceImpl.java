@@ -2,14 +2,15 @@ package business.impl;
 
 import business.ComposicoesService;
 import dao.ComposicoesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import rest.model.Composicao;
 
 /**
  * Created by Livia on 16/06/2016.
  */
 public class ComposicoesServiceImpl implements ComposicoesService {
+    @Autowired
     private ComposicoesRepository composicoesRepository;
-
     public boolean create(final Composicao composicao) {
         return composicoesRepository.create(composicao);
     }

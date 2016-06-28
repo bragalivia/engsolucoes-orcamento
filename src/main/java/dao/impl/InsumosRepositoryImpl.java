@@ -45,7 +45,7 @@ public class InsumosRepositoryImpl implements InsumosRepository {
         return null;
     }
 
-    public Insumo read(final Insumo insumo) {
+    public Insumo read(final String insumoId) {
 //        Connection conn = null;
 //        Statement stmt = null;
 //        List<Insumo> list = new ArrayList<Insumo>();
@@ -73,8 +73,8 @@ public class InsumosRepositoryImpl implements InsumosRepository {
         return null;
     }
 
-    public int delete(final int codigo, final String origem) {
-        return 0;
+    public boolean delete(final String origem, final int codigo) {
+        return true;
     }
 
     private Insumo builder(ResultSet result) throws SQLException {
