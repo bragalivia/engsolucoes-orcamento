@@ -8,6 +8,6 @@ import rest.model.Composicao;
 public interface ComposicoesService {
     boolean create(final Composicao composicao);
     Composicao update(final Composicao composicao);
-    Composicao read(final Composicao composicao);
-    int delete(final int codigo, final String origem);
+    Composicao read(final int code);
+    boolean delete(final String source, final int code);
 }

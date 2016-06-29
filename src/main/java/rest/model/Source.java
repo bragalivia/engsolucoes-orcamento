@@ -3,7 +3,7 @@ package rest.model;
 /**
  * Created by Livia on 21/06/2016.
  */
-public class Origem {
+public class Source {
     private String name;
 
     public String getName() {

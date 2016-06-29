@@ -2,6 +2,7 @@ package dao.impl;
 
 import dao.ComposicoesRepository;
 import dao.config.ConnectionMysql;
+import org.springframework.stereotype.Component;
 import rest.model.Composicao;
 
 import java.sql.*;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Created by Livia on 16/06/2016.
  */
+@Component
 public class ComposicoesRepositoryImpl implements ComposicoesRepository {
     public boolean create(final Composicao composicao) {
 //        Statement stmt = null;
@@ -18,8 +20,8 @@ public class ComposicoesRepositoryImpl implements ComposicoesRepository {
 //        boolean ok = false;
 //        try {
 //            String sql = "INSERT INTO insumos VALUES (" +
-//                    "'" + composicao.getOrigem() +"', "+ composicao.getCodigo() +", '"+
-//                    composicao.getDescricao() +"' )";
+//                    "'" + composicao.getsource() +"', "+ composicao.getCodigo() +", '"+
+//                    composicao.getDescription() +"' )";
 //
 //            stmt = con.createStatement();
 //            stmt.executeUpdate(sql);
@@ -47,7 +49,7 @@ public class ComposicoesRepositoryImpl implements ComposicoesRepository {
         return null;
     }
 
-    public Composicao read(final Composicao insumo) {
+    public Composicao read(final int code) {
 //        Connection conn = null;
 //        Statement stmt = null;
 //        List<Composicao> list = new ArrayList<Composicao>();
@@ -76,15 +78,15 @@ public class ComposicoesRepositoryImpl implements ComposicoesRepository {
         return null;
     }
 
-    public int delete(final int codigo, final String origem) {
-        return 0;
+    public boolean delete(final String source, final int code) {
+        return true;
     }
 
     private Composicao builder(ResultSet result) throws SQLException {
         Composicao composicao = new Composicao();
-        composicao.setCodigo(result.getInt("codigo"));
-        composicao.setDescricao(result.getString("descricao"));
-        composicao.setOrigem(result.getString("origem"));
+        composicao.setCode(result.getInt("code"));
+        composicao.setDescription(result.getString("description"));
+        composicao.setSource(result.getString("source"));
         return composicao;
     }
 }

@@ -12,15 +12,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import com.sun.jersey.core.header.FormDataContentDisposition;
 import com.sun.jersey.multipart.FormDataParam;
+import org.springframework.stereotype.Component;
 
 @Path("/files")
+@Component
 public class UploadFileService {
-
     private static final String SERVER_UPLOAD_LOCATION_FOLDER = "C://Users/nikos/Desktop/Upload_Files/";
-
-    /**
-     * Upload a File
-     */
 
     @POST
     @Path("/upload")
@@ -33,17 +30,13 @@ public class UploadFileService {
 
         // save the file to the server
         saveFile(fileInputStream, filePath);
-
         String output = "File saved to server location : " + filePath;
 
         return Response.status(200).entity(output).build();
-
     }
 
     // save uploaded file to a defined location on the server
-    private void saveFile(InputStream uploadedInputStream,
-                          String serverLocation) {
-
+    private void saveFile(InputStream uploadedInputStream, String serverLocation) {
         try {
             OutputStream outpuStream = new FileOutputStream(new File(serverLocation));
             int read = 0;
@@ -56,10 +49,7 @@ public class UploadFileService {
             outpuStream.flush();
             outpuStream.close();
         } catch (IOException e) {
-
             e.printStackTrace();
         }
-
     }
-
 }

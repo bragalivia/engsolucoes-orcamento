@@ -1,7 +1,8 @@
 package dao.impl;
 
-import dao.InsumosRepository;
+import dao.InsumoRepository;
 import dao.config.ConnectionMysql;
+import org.springframework.stereotype.Component;
 import rest.model.Insumo;
 
 import java.sql.*;
@@ -9,7 +10,8 @@ import java.sql.*;
 /**
  * Created by Livia on 16/06/2016.
  */
-public class InsumosRepositoryImpl implements InsumosRepository {
+@Component
+public class InsumoRepositoryImpl implements InsumoRepository {
     public boolean create(final Insumo insumo) {
         Connection conn = null;
         Statement stmt = null;
@@ -17,10 +19,10 @@ public class InsumosRepositoryImpl implements InsumosRepository {
         boolean ok = false;
         try {
             String sql = "INSERT INTO insumos VALUES (" +
-                    "'" + insumo.getOrigem() +"', "
-                    + insumo.getCodigo() +", " +
-                    "'"+ insumo.getDescricao() + "' , '" + insumo.getUnidade() +"', '" +
-                    insumo.getPreco() +"' )";
+                    "'" + insumo.getSource() +"', "
+                    + insumo.getCode() +", " +
+                    "'"+ insumo.getDescription() + "' , '" + insumo.getUnity() +"', '" +
+                    insumo.getPrice() +"' )";
             conn = ConnectionMysql.getConnection();
             stmt = conn.createStatement();
             stmt.executeUpdate(sql);
@@ -45,7 +47,7 @@ public class InsumosRepositoryImpl implements InsumosRepository {
         return null;
     }
 
-    public Insumo read(final String insumoId) {
+    public Insumo read(final int code) {
 //        Connection conn = null;
 //        Statement stmt = null;
 //        List<Insumo> list = new ArrayList<Insumo>();
@@ -73,15 +75,15 @@ public class InsumosRepositoryImpl implements InsumosRepository {
         return null;
     }
 
-    public boolean delete(final String origem, final int codigo) {
+    public boolean delete(final String source, final int code) {
         return true;
     }
 
     private Insumo builder(ResultSet result) throws SQLException {
         Insumo insumo = new Insumo();
-        insumo.setCodigo(result.getInt("codigo"));
-        insumo.setDescricao(result.getString("descricao"));
-        insumo.setOrigem(result.getString("origem"));
+        insumo.setCode(result.getInt("code"));
+        insumo.setDescription(result.getString("description"));
+        insumo.setSource(result.getString("source"));
         return insumo;
     }
 }

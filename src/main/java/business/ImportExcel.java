@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Livia on 16/06/2016.
  */
 public class ImportExcel {
-    public List<Insumo> readExcel(String fileName, String origemDatabaseName) {
+    public List<Insumo> readExcel(String fileName, String sourceDatabaseName) {
         List<Insumo> insumoList = new ArrayList<Insumo>();
         try {
             FileInputStream input = new FileInputStream(fileName);
@@ -24,17 +24,17 @@ public class ImportExcel {
 
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 row = (Row) sheet.getRow(i);
-                Double codigo = row.getCell(0).getNumericCellValue();
-                String descricao = row.getCell(1).getStringCellValue();
-                String unidade = row.getCell(2).getStringCellValue();
-                Double preco = row.getCell(3).getNumericCellValue();
+                Double code = row.getCell(0).getNumericCellValue();
+                String description = row.getCell(1).getStringCellValue();
+                String unity = row.getCell(2).getStringCellValue();
+                Double price = row.getCell(3).getNumericCellValue();
 
                 Insumo insumo = new Insumo();
-                insumo.setOrigem(origemDatabaseName);
-                insumo.setCodigo(codigo.intValue());
-                insumo.setDescricao(descricao);
-                insumo.setUnidade(unidade);
-                insumo.setPreco(preco);
+                insumo.setSource(sourceDatabaseName);
+                insumo.setCode(code.intValue());
+                insumo.setDescription(description);
+                insumo.setUnity(unity);
+                insumo.setPrice(price);
                 insumoList.add(insumo);
             }
             input.close();

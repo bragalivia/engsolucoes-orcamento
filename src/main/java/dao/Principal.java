@@ -1,7 +1,7 @@
 package dao;
 
 import business.ImportExcel;
-import dao.impl.InsumosRepositoryImpl;
+import dao.impl.InsumoRepositoryImpl;
 import rest.model.Insumo;
 
 import java.util.List;
@@ -13,23 +13,23 @@ public class Principal {
     public static void main(String[] args) {
         ImportExcel excel = new ImportExcel();
         String fileName = "C:\\Users\\Livia\\Desktop\\database1.xlsx";
-        String origemDatabaseName = "Caio";
+        String sourceDatabaseName = "Caio";
 
         //TODO
-//        if (origem.has(fileName)) {
+//        if (source.has(fileName)) {
 //            if(sobrescrever()) {
-//                deleteDatabase(origemDatabaseName);
+//                deleteDatabase(sourceDatabaseName);
 //            } else {
-//                origemDatabaseName = "novoDatabaseName";
+//                sourceDatabaseName = "novoDatabaseName";
 //            }
 //        }
 
-        List<Insumo> listInsumo = excel.readExcel(fileName, origemDatabaseName);
-        InsumosRepository insumosRepository = new InsumosRepositoryImpl();
+        List<Insumo> listInsumo = excel.readExcel(fileName, sourceDatabaseName);
+        InsumoRepository insumoRepository = new InsumoRepositoryImpl();
 
         for (Insumo insumo : listInsumo) {
-            insumosRepository.create(insumo);
-            System.out.println("criado"+insumo.getCodigo());
+            insumoRepository.create(insumo);
+            System.out.println("criado"+insumo.getCode());
         }
     }
 }
